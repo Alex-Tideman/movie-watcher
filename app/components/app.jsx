@@ -10,17 +10,20 @@ export default class App extends Component {
   }
 
   render() {
-    let userLink = <Link to='/login'><button> Login </button></Link>
-    let favoriteLink;
+    let userLink = <Link to='/login'>Login</Link>
+    let favoriteLink
     if (this.props.user.id) {
       userLink = <button onClick={() => this.props.signOutUser()}>Sign Out</button>
-      favoriteLink = <Link to='/favorites'><button> Favorites </button></Link>
+      favoriteLink = <Link to='/favorites'>Favorites</Link>
     }
     return (
       <div>
-        <h1>Movie Watcher</h1>
-        { userLink }
-        { favoriteLink }<br/>
+        <img className="popcorn" src="../assets/popcorn.png" />
+        <div className="header">
+          <h1>Movie Watcher</h1>
+          { userLink }
+          { favoriteLink }<br/>
+        </div>
         <Route exact path='/' render={ () => <ContainerMovieIndex/> }/>
         <Route path='/login' render={ ({history}) => <ContainerLogin/> }/>
         <Route path='/signout' component={ ContainerLogin }/>

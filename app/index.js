@@ -23,5 +23,4 @@ const router = (
   </Provider>
 )
 
-ReactDOM.render(
-router, document.getElementById('main'))
+ReactDOM.render(router, document.getElementById('main'))
