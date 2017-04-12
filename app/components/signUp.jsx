@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router';
 export default class Login extends Component {
   constructor() {
     super();
-    this.state = { email: 'tman2272@aol.com', password: 'password' };
+    this.state = { email: '', password: '', name: '' };
   }
 
   handleSubmit(e) {
@@ -38,26 +38,29 @@ export default class Login extends Component {
   }
 
   handleLowerCase() {
-    const { email, password } = this.state;
+    const { email, password, name } = this.state;
     return {
       email: email.toLowerCase(),
-      password: password.toLowerCase()
+      password: password.toLowerCase(),
+      name: name.toLowerCase()
     }
   }
 
-  handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({[name]: value });
+  handleChange(e, key) {
+    const { value } = e.target;
+    this.setState({ [key]: value });
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, name } = this.state;
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
+        Name: <br/>
+        <input type='text' value={name} onChange={ (e) => this.handleChange(e, 'name') }/><br/>
         Email: <br/>
-        <input type='text' value={email} name='email' onChange={this.handleChange.bind(this)}/><br/>
+        <input type='text' value={email} onChange={ (e) => this.handleChange(e, 'email') }/><br/>
         Password: <br/>
-        <input type='text' value={password} name='password' onChange={this.handleChange.bind(this)}/><br/>
+        <input type='text' value={password} onChange={ (e) => this.handleChange(e, 'password') }/><br/>
         <input type='submit' value='Login'/><br/>
       </form>
     )

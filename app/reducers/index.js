@@ -6,29 +6,29 @@ import { routerReducer } from 'react-router-redux';
   // add, find/signIn
 // data
 
-function userReducer (state = {}, action) {
+export const user = (state = {}, action) => {
   switch (action.type) {
     case "SIGN_IN":
-      return Object.assign({}, state, action.user)
+      return Object.assign({}, state, action.user);
       break
     case "SIGN_OUT":
-      return Object.assign({}, state, action.user)
+      return {};
       break
     default:
-      return state
+      return state;
       break
   }
 }
 // reducers takes in two things:
   // takes in the action and copy of current state
-function movieApiReducer (state = [], action) {
+export const movieApi = (state = [], action) => {
   if (action.type === "UPDATE_MOVIES") {
-    return action.data
+    return action.data;
   }
   return state;
 }
 
-function favoriteReducer (state = [], action) {
+export const favorites = (state = [], action) => {
   switch (action.type) {
     case "ADD_FAVORITE":
       return [...state, action.data];
@@ -37,11 +37,11 @@ function favoriteReducer (state = [], action) {
       return [...state, ...action.data];
       break
     default:
-      return state
+      return state;
       break
   }
 }
 
 export const indexReducer =
-        combineReducers({ favoriteReducer, movieApiReducer, userReducer,
+        combineReducers({ favorites, movieApi, user,
                         routing: routerReducer })

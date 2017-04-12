@@ -3,11 +3,11 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/index.js';
 import Login from '../components/login.jsx';
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return state;
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actionCreators, dispatch);
 }
 

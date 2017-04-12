@@ -1,0 +1,22 @@
+#main h1 {
+  background-color: blue;
+}
+
+#main {
+  text-align: center;
+}
+
+.movie-card {
+  height: 400px;
+  width: 300px;
+  margin: 10px;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

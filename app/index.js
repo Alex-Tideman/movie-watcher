@@ -4,25 +4,22 @@ import ContainerApp from './containers/containerApp.js';
 import ContainerLogin from './containers/containerlogin.js';
 import ContainerMovieIndex from './containers/containerMovieIndex.js';
 import FavoriteContainer from './containers/favoriteContainer.js';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { createStore } from 'redux';
+import { Route } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory'
+import { createStore, applyMiddleware } from 'redux';
 import { indexReducer } from './reducers/index.js';
 import { Provider } from 'react-redux';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 
-const store = createStore(indexReducer, {},  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-const history = syncHistoryWithStore(browserHistory, store);
+const history = createHistory();
+const middleware = routerMiddleware(history)
+const store = createStore(indexReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(middleware))
 
 const router = (
   <Provider store={store}>
-    <Router history={history} >
-      <Route path='/' component={ContainerApp}>
-        <IndexRoute component={ContainerMovieIndex} />
-        <Route path='login' component={ContainerLogin} />
-        <Route path='signout' component={ContainerLogin} />
-        <Route path='favorites' component={FavoriteContainer} />
-      </Route>
-    </Router>
+    <ConnectedRouter history={history} >
+      <ContainerApp/>
+    </ConnectedRouter>
   </Provider>
 )
 
